@@ -59,14 +59,14 @@ The basemap (Canada.tif) is a large file and is tracked using Git LFS. It will n
 You can replace it with another .tif file if you want to use a different region.
 
 ## Algorithms Used
-DBSCAN
+DBSCAN  
 Density-Based Spatial Clustering of Applications with Noise
 
 Requires eps and min_samples
 
 Cannot determine optimal clusters automatically
 
-HDBSCAN
+HDBSCAN  
 Hierarchical DBSCAN
 
 Works well with variable density
