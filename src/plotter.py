@@ -1,6 +1,11 @@
 """
 Write a function that plots clustered locations and overlays them on a basemap.
 """
+# Geographical tools
+import matplotlib.pyplot as plt # for plotting
+import geopandas as gpd # pandas dataframe-like geodataframes for geographical data
+import contextily as ctx # used for obtianing a basemap of Canada
+from shapely.geometry import Point
 
 def plot_clustered_locations(df,  title='Museums Clustered by Proximity'):
     """
@@ -10,8 +15,8 @@ def plot_clustered_locations(df,  title='Museums Clustered by Proximity'):
     - df: DataFrame containing 'Latitude', 'Longitude', and 'Cluster' columns
     - title: str, title of the plot
     """
-    
-    # Load the coordinates intto a GeoDataFrame
+
+    # Load the coordinates into a GeoDataFrame
     gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df['Longitude'], df['Latitude']), crs="EPSG:4326")
     
     # Reproject to Web Mercator to align with basemap 
@@ -31,7 +36,7 @@ def plot_clustered_locations(df,  title='Museums Clustered by Proximity'):
     non_noise.plot(ax=ax, column='Cluster', cmap='tab10', markersize=30, ec='k', legend=False, alpha=0.6)
     
     # Add basemap of  Canada
-    ctx.add_basemap(ax, source='./Canada.tif', zoom=4)
+    ctx.add_basemap(ax, source='../data/Canada.tif', zoom=4)
     
     # Format plot
     plt.title(title, )
